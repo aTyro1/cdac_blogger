@@ -1,0 +1,64 @@
+{% extends "_base.html" %}
+{% load static %}
+<!doctype html>
+
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+{% block content %}
+<body>
+    <div class="flex" style="background-color: #FFF5C2;">
+        <div class="w-1/5 h-screen shadow-lg p-4 justify-center" style="background-color: #3081D0;" style="text-align: center;">
+                <div class="box-border h-16 w-16 mt-4 rounded-full  mx-auto" style="text-align: center; background-color: #F4F27E;">
+                    {% load static %}
+<img src="{% static 'blogs/cdac.jpg' %}" height="20px" width="20px" alt="My image">
+                </div>
+                <div class="container p-2 mt-8">
+                    <p style="color: #F4F27E; text-align: center;" >Top Writers</p>
+                    <div class="container mt-2">
+                        <button class="w-full shadow-lg rounded" style="background-color: #f8f7ba; color:#3081D0;">Dr XYZ</button>
+                    </div>
+                </div>
+            
+        </div>
+        <div class="w-4/5 h-full" style="background-color: #FFF5C2;">
+            <div class="container p-2 fixed" style="text-align: center; background-color: #6DB9EF;">
+                <form>
+                    <input type="submit" value="Feeds" style="font-size: 12px; color: #f8f7ba;">
+                    <input type="submit" value="Topics" class="ml-2" style="font-size: 12px; color: #f8f7ba;">
+                    <input type="submit" value="Submissions" class="ml-2" style="font-size: 22px; color: #F4F27E;">
+                </form>
+              </div>
+              <div class="container h-4 p-4 mt-8">
+                <div class="container mx-auto mt-4" style="text-align: center;">
+                    <form method="GET" action="submissions" style="display: inline;">
+                        <input type="submit" value="Your Submissions" class="shadow-lg rounded p-2" style="border: 2px solid #3081D0; background-color: #F4F27E;color: #3081D0;">
+                    </form>
+                    <form method="GET" action="new" style="display: inline; margin-left: 10px;">
+                        <input type="submit" value="New Submissions" class="shadow-lg rounded p-4" style="border: 2px solid #3081D0; background-color: #F4F27E;color: #3081D0;">
+                    </form>
+                </div>
+                <div class="box-border h-64 w-full mt-8 shadow-lg rounded-lg relative" style="background-color: #F4F27E;">
+                    <div class="mx-auto" style="text-align: center;">
+                     <p class="mx-auto" style="display: inline; font-size: 12px; color: #6DB9EF; text-align: center;">new writeup!</p>
+                    </div>
+                    <form method="POST" class="p-4" action="submit_article" >{% csrf_token %}
+                        <input type="text" class="w-full h-12 rounded shadow-lg" name="title" style="box-shadow: 2px 2px #3081D0; color: #3081D0; text-align: center;" required>
+                        <label for="path" style="color: #3081D0;">Choose text file for the article</label>
+                        <input type="file" name="blog_path" id="path" required class="mt-4 h-8 p-4 " style="text-align: center; color: #3081D0; font-size: 12px;">
+                    <div class="absolute inset-x-0 bottom-0 h-12 mx-auto" style="background-color: #f8f7ba; text-align: center;">
+                        <div class="mx-auto mt-2" >
+                            <input class="mx-auto shadow-lg rounded-md" style="background-color: #F4F27E; color: #3081D0; padding: 4px; border-color: #3081D0; border: 2px solid;" type="submit" value="submit" >
+                    </div>
+                    </form
+            </div>
+              </div>
+              
+        </div>
+    </div>
+ {% endblock content %}   
+</body>
+</html>

@@ -1,0 +1,30 @@
+{% extends "_base.html" %}
+{% load static %}
+{% csrf_token %}
+<!doctype html>
+
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+{% block content %}
+<body>
+    <div class="h-screen flex items-center justify-center">
+        <div class="grid grid-cols-1">
+        <img src="{% static 'blogs/cdac.jpg' %}" class="h-12 w-12 mt-8" style="height: 10rem;" alt="My image">
+       
+        <div class="mt-12">
+            <h1 style="color: rgb(14, 201, 14); text-align: center;">Registration Successful !</h1>
+        </div>
+        <div>
+            <form action="afterLogin" method="POST">{% csrf_token %}
+            <input type="submit" value="login now " class="rounded shadow-lg p-2 mt-4" style="background-color: #6DB9EF; color: blue; box-shadow: 2px 2px blue;">
+            </form>
+        </div>
+
+    </div>
+</body>
+{% endblock content %} 
+</html>

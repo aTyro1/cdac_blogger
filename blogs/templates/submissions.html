@@ -1,0 +1,72 @@
+{% extends "_base.html" %}
+{% load static %}
+<!doctype html>
+
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+{% block content %}
+<body>
+    <div class="flex" style="background-color: #FFF5C2;">
+        <div class="w-1/5 h-screen shadow-lg p-4 justify-center" style="background-color: #3081D0;" style="text-align: center;">
+                <div class="box-border h-16 w-16 mt-4 rounded-full  mx-auto" style="text-align: center; background-color: #F4F27E;">
+                    {% load static %}
+<img src="{% static 'blogs/cdac.jpg' %}" height="20px" width="20px" alt="My image">
+                </div>
+                <div class="container p-2 mt-8">
+                    <p style="color: #F4F27E; text-align: center;" >Top Writers</p>
+                    <div class="container mt-2">
+                        <button class="w-full shadow-lg rounded" style="background-color: #f8f7ba; color:#3081D0;">Dr XYZ</button>
+                    </div>
+                </div>
+            
+        </div>
+        <div class="w-4/5 h-full" style="background-color: #FFF5C2;">
+            <div class="container p-2 fixed" style="text-align: center; background-color: #6DB9EF;">
+                <form>
+                    <input type="submit" value="Feeds" style="font-size: 12px; color: #f8f7ba;">
+                    <input type="submit" value="Topics" class="ml-2" style="font-size: 12px; color: #f8f7ba;">
+                    <input type="submit" value="Submissions" class="ml-2" style="font-size: 22px; color: #F4F27E;">
+                </form>
+              </div>
+              <div class="container h-4 p-4 mt-8">
+                <div class="container mx-auto mt-4" style="text-align: center;">
+                    <form method="GET" action="submissions" style="display: inline;">
+                        <input type="submit" value="Your Submissions" class="shadow-lg rounded p-4" style="border: 2px solid #3081D0; background-color: #F4F27E;color: #3081D0;">
+                    </form>
+                    <form method="GET" action="new" style="display: inline; margin-left: 10px;">
+                        <input type="submit" value="New Submissions" class="shadow-lg rounded p-2" style="border: 2px solid #3081D0; background-color: #F4F27E;color: #3081D0;">
+                    </form>
+                </div>
+                <div class="box-border h-64 w-full mt-8 shadow-lg rounded-lg relative" style="background-color: #F4F27E;">
+                    <div class="mx-auto" style="text-align: center;">
+                     <p class="mx-auto" style="display: inline; font-size: 12px; color: #6DB9EF; text-align: center;">posted on 01/01/2023</p>
+                    </div>
+                    <div class="container p-2">
+                        <div class="box-border h-6 w-6 p-2 rounded-md" style="display: inline; background-color: #6DB9EF;">
+                            TOPIC:
+                           </div >
+                        <p style="color: #6DB9EF;text-align: justify;font-size: 14px; display: inline; margin-left: 4px;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur sint obcaecati provident quo nostrum necessitatibus cum dolores? Ad ex temporibus veniam laudantium nihil fugiat sunt quae nesciunt iure. Magni, provident.</p>
+                            <hr>
+                            <div class="box-border h-6 w-6 p-2 rounded-md" style="display: inline; background-color: #FFF5C2;">
+                                ANS:
+                               </div > 
+                        <p style="color:#3081D0;text-align: justify; font-size: 14px; display: inline; margin-left: 4px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias aliquam alias ad autem voluptatum sed placeat expedita praesentium ipsum omnis, dignissimos reprehenderit quos, eaque provident iste voluptates dolore quaerat ut?</p>
+                        
+                    </div>
+                    <div class="absolute inset-x-0 bottom-0 h-12 mx-auto" style="background-color: #f8f7ba; text-align: center;">
+                        <form class="mx-auto mt-2" method="GET" action="loadArticles" >
+                            <input class="mx-auto shadow-lg rounded-md" style="background-color: #F4F27E; color: #3081D0; padding: 4px; border-color: #3081D0; border: 2px solid;" type="submit" value="read >>" >
+                        </form>
+                    </div>
+            </div>
+              </div>
+              
+        </div>
+    </div>
+ {% endblock content %}   
+</body>
+</html>

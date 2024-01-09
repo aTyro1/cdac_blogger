@@ -1,0 +1,43 @@
+{% extends "_base.html" %}
+{% load static %}
+{% csrf_token %}
+<!doctype html>
+
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+{% block content %}
+<body>
+    <div class="h-screen flex items-center justify-center">
+        <div class="grid grid-cols-1">
+        <img src="{% static 'blogs/cdac.jpg' %}" class="h-12 w-12 mt-8" style="height: 10rem;" alt="My image">
+        
+        <form action="step1" method="POST"> {% csrf_token %}
+           
+            <br>
+            <hr>
+            <br>
+            <div class="flex gap-2">
+                <label class="w-1/3" for="name">writer's name: </label>
+                <input type="text" class="w-2/3" id="name" style="border: 2px solid #6DB9EF; margin-left: 10px;" name="writer_name" required>
+            </div>
+            <div class="flex gap-2 mt-4">
+                <label class="w-1/3" for="name">email: </label>
+                <input type="password" class="w-2/3" id="password" style="border: 2px solid #6DB9EF; margin-left: 66px;" name="writer_email" required>
+            </div>
+            <div class="grid grid-cols-3 p-4 gap-2">
+                <div>
+                    <input type="submit" value="next >>" class="rounded shadow-lg p-2 mt-4" style="background-color: #F4F27E; color: rgb(12, 12, 2); box-shadow: 2px 2px #918e08;">
+        </form>
+                    </div>
+                    
+        </div> 
+        {{message}}   
+
+    </div>
+</body>
+{% endblock content %} 
+</html>
