@@ -14,7 +14,7 @@
         <div class="w-1/5 h-screen shadow-lg p-4 justify-center" style="background-color: #3081D0;" style="text-align: center;">
                 <div class="box-border h-16 w-16 mt-4 rounded-full  mx-auto" style="text-align: center; background-color: #F4F27E;">
                     {% load static %}
-<img src="{% static 'blogs/cdac.jpg' %}" height="20px" width="20px" alt="My image">
+                    <h1 style="font-size: 40px;">{{ f_l }}</h1>
                 </div>
                 <div class="container p-2 mt-8">
                     <p style="color: #F4F27E; text-align: center;" >Top Writers</p>
@@ -28,7 +28,6 @@
             <div class="container p-2 fixed" style="text-align: center; background-color: #6DB9EF;">
                 <form>
                     <input type="submit" value="Feeds" style="font-size: 12px; color: #f8f7ba;">
-                    <input type="submit" value="Topics" class="ml-2" style="font-size: 12px; color: #f8f7ba;">
                     <input type="submit" value="Submissions" class="ml-2" style="font-size: 22px; color: #F4F27E;">
                 </form>
               </div>
@@ -57,7 +56,9 @@
             </div>
               </div>
               
+              
         </div>
+        <h1>{{ message }}</h1>
     </div>
  {% endblock content %}   
 </body>

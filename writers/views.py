@@ -47,16 +47,15 @@ def register(req):
 def step1(req):
     writer_email=req.POST['writer_email']
     writer_name=req.POST['writer_name']
-    register_page=loader.get_template('register.html')
+    writer_password=req.POST['pass2']
+    c_writer_id=writer_name[:3]+writer_password[:3]
+    success_page=loader.get_template('registration_success.html')
     pass_register=loader.get_template('password_auth.html')
-    if(writer_email == ''):
-        return HttpResponse(register_page.render({'message':"email is not provided. RE-ENTER email"}))
-    elif(writer_name == ''):
-        return HttpResponse(register_page.render({'message':'name is not provid. RE-ENTER name'}))
-    else:
-        writer_new=writer(first_name=writer_name,email=writer_email)
-        writer_new.save()
-        return HttpResponse(pass_register.render({}))
+    writer_new=writer(first_name=writer_name,email=writer_email,password=writer_password,writer_id=c_writer_id)
+    writer_new.save()
+    v=verified_writer(writer_name=writer_name,writer_id=c_writer_id)
+    v.save()
+    return redirect('/writers')
 
 @csrf_protect
 @csrf_exempt
