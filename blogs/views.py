@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.template import loader
 from .models import writer, verified_writer,blogs
+from writers.models import writer as writersWriter
 from django.views.decorators.csrf import csrf_protect,csrf_exempt
 from datetime import date
 
@@ -40,13 +41,22 @@ def loadArticles(request):
     return HttpResponse(article.render({'writer_name':request.session['writer'],'writer_name_fl':request.session['writer'][0].upper(),'date':a[0].date,'title':a[0].title,'blog':a[0].blog,'comments':comments,'blog_id':a[0].id}))
 
 def submissions(request):
-    print(request.session['default_mode'])
-    if(request.session['default_mode']=='T'):
+    type=request.GET.get('type')
+    if(type=='Feeds'):
+        print(type)
+        name_of_the_writer=request.session['writer']
+        w_id=request.session['id']
+        if(len(verified_writer.objects.filter(writer_name=name_of_the_writer,writer_id=w_id))):
+            home=loader.get_template('home.html')
+            total_blogs=blogs.objects.all().values()
+            return HttpResponse(home.render({'writer_name_fl':name_of_the_writer[0].upper(),'blogs':total_blogs,'writer_name':name_of_the_writer}))
+
+    elif(request.session['default_mode']=='T'):
         return redirect('/writers')
-    print('submission')
-    submissions_html=loader.get_template('submissions.html')
-    b=blogs.objects.filter(writer_id=request.session['id'])
-    return HttpResponse(submissions_html.render({'f_l':request.session['writer'][0].upper(),'blogs':b}))
+    else:
+        submissions_html=loader.get_template('submissions.html')
+        b=blogs.objects.filter(writer_id=request.session['id'])
+        return HttpResponse(submissions_html.render({'f_l':request.session['writer'][0].upper(),'blogs':b}))
 
 def new(request):
     if(request.session['default_mode']=='T'):
@@ -85,4 +95,15 @@ def loadComments(request):
         print(i)
     return HttpResponse(article.render({'writer_name':request.session['writer'],'writer_name_fl':request.session['writer'][0].upper(),'date':b.date,'title':b.title,'blog':b.blog,'comments':comments,'blog_id':b.id}))
 
-
+def account(request):
+    if(request.session['default_mode']=='T'):
+        return redirect('/writers')
+    writer_name=request.session['writer']
+    wid=request.session['id']
+    account=loader.get_template('account.html')
+    try:
+        w=writersWriter.objects.filter(writer_id=wid).values()[0]
+    except:
+        print('passed')
+    return HttpResponse(account.render({'writer':writer_name,'writer_id':wid,'email':w['email']}))
+    

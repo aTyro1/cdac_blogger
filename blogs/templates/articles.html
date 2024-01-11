@@ -1,3 +1,4 @@
+{% extends "_base.html" %}
 {% load static %}
 <!doctype html>
 
@@ -5,12 +6,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  {% block content %}
   <script src="{% static 'js/register.js' %}"></script>
 </head>
 <body>
-    <div class="flex" style="background-color: #FFF5C2;">
+    <!-- <div class="flex" style="background-color: #FFF5C2;">
         <div class="w-2/5 h-screen shadow-lg p-4 justify-center" style="background-color: #3081D0;" style="text-align: center;">
                 <div class="box-border h-16 w-16 mt-4 rounded-full p-3 mx-auto" style="text-align: center; background-color: #F4F27E;">
                     <h1 style="text-align: center; font-size: 25px;">{{ writer_name_fl }}</h1>
@@ -62,6 +62,69 @@
 
              
         </div>
-    </div>
+    </div> -->
+    <div class="container mx-auto" id="body">
+        <div class="container mx-auto p-3" style=" background-color: #1b3ba3; box-shadow: 3px 5px grey;">
+            <img src="{% static 'blogs/cdac-logo.png' %}" class="h-4 w-4" style="height: 4rem; display: inline;" alt="My image">
+            <form method="GET" action="submissions" class="mx-auto" style="display: inline; text-align: center;">
+                <input type="submit" value="Feeds" class="mx-auto" style="font-size: 22px; color: #F4F27E; text-align: center;">
+                <input type="submit" value="Submissions" class="ml-2" style="font-size: 12px; color: #f8f7ba;">
+            </form>
+            <form style="text-align: right; font-size: 16px; color: #f8f7ba;">
+            <nav>
+                <p style="display:inline;margin-left: 8px;">Account</p>
+                <p style="display:inline;margin-left: 8px;">Writers</p>
+                <p style="display:inline;margin-left: 8px;">Admin</p>
+            </nav>
+          </form>
+          </div>
+          <div class="flex" style="margin-top: 15px;">
+            <div class="container w-1/5 h-full p-4" style="background-color: #F4F27E; box-shadow: 1px 0px grey;">
+                <p style="text-align: center; color: #1b3ba3;font-size: 22px;">COMMENTS</p>
+                <div class="container h-full" style="display: inherit;">
+                <div class="container mt-2 h-screen" style="text-align: center; overflow-y: auto; overflow-x: hidden;">
+                    <ul>
+                        {% for i in comments %}
+                        <li>
+                            <p class="w-full h-full rounded-md p-4 mt-4" style="background-color: #1b3ba3; color:#F4F27E; box-shadow: 5px 5px #f8f7ba;">
+                                {{ i }}
+                            </p>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                </div>
+            </div>
+          <div class="container w-4/5" style="display: inherit;">
+            <div class="container p-4 mt-4" style="overflow-y:auto;overflow-x: hidden;">
+          <div class="container p-2 shadow-lg rounded">
+            <div class="box-content h-screen w-32 p-2 border-4" style="border-color: #1b3ba3; background-color: white;">
+              <p style="font-size: 18px;">{{ title }}</p>
+              <br>
+              <p style="font-size: 12px;">posted by: on {{ date }}</p>
+              <br>
+              <hr>
+              <br>
+              <div class="container h-full" style="display: inherit;">
+              <p style="font-size: 15px;
+              text-align: justify;">{{ blog }}</p>
+              </div>
+            </div>
+            <div class="container " style="margin-top: 20px;">
+                <div class="container p-2">
+                    <p style="color: #1b3ba3; text-align: center;" > Write Your Comment</p>
+                            <textarea class="mx-auto shadow-lg rounded-md" style="display: block; background-color: white; padding: 4px; border-color: #3081D0; border: 2px solid; box-shadow: 5px 5px #1b3ba3;" type="submit" cols="50" rows="10" id="new_comment"></textarea>
+                            <input type="text" style="visibility: hidden;" id="blog_id" value="{{ blog_id }}">
+                            <button class="mx-auto p-2 rounded shadow-lg" style="display: block; margin-top: 4px; text-align: center; color: #1b3ba3;background-color: #f8f7ba;border: 2px solid #1b3ba3; box-shadow: 2px 2px #1b3ba3;" onclick="pushComment()">push</button>
+
+                </div>
+              </div>
+          </div>
+
+          </div>
+          </div>
+          </div>
+          </div>
+          {% endblock content %} 
 </body>
 </html>

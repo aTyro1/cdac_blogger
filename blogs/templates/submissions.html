@@ -10,7 +10,62 @@
 </head>
 {% block content %}
 <body>
-    <div class="flex" style="background-color: #FFF5C2;">
+    <div class="container mx-auto" id="body">
+        <div class="container mx-auto p-3" style=" background-color: #1b3ba3; box-shadow: 3px 5px grey;">
+            <img src="{% static 'blogs/cdac-logo.png' %}" class="h-4 w-4" style="height: 4rem; display: inline;" alt="My image">
+            <form method="GET" action="submissions" class="mx-auto" style="display: inline; text-align: center;">
+                <input type="submit" value="Feeds" name="type" class="mx-auto" style="font-size: 12px; color: #f8f7ba; text-align: center;">
+                <input type="submit" value="Submissions" name="type" class="ml-2" style="font-size: 22px; color: #F4F27E;;">
+            </form>
+            <form style="text-align: right; font-size: 16px; color: #f8f7ba;">
+            <nav>
+                <p style="display:inline;margin-left: 8px;">Account</p>
+                <p style="display:inline;margin-left: 8px;">Writers</p>
+                <p style="display:inline;margin-left: 8px;">Admin</p>
+            </nav>
+          </form>
+          </div>
+          <div class="container mx-auto mt-4" style="text-align: center;">
+            <form method="GET" action="submissions" style="display: inline;">
+                <input type="submit" value="Your Submissions" class="shadow-lg rounded p-4" style="border: 2px solid #3081D0; background-color: #1b3ba3;color: gold; box-shadow: 2px 2px gold;">
+            </form>
+            <form method="GET" action="new" style="display: inline; margin-left: 10px;">
+                <input type="submit" value="New Submissions" class="shadow-lg rounded p-2" style="border: 2px solid #3081D0; background-color: #1b3ba3;color: gold; box-shadow: 2px 2px gold;">
+            </form>
+        </div>
+          <div class="flex" style="margin-top: 15px;">
+          <div class="container w-5/5 h-screen" style="display: inherit;">
+            <div class="container p-4" style="overflow-y:auto;overflow-x: hidden;">
+                {% for i in blogs %}
+          <div class="container p-2 shadow-lg rounded">
+            <div class="box-content h-64 w-32 p-2 border-4" style="border-color: #1b3ba3; background-color: white;">
+              <p style="font-size: 18px;">{{ i.title }}</p>
+              <br>
+              <p style="font-size: 12px;">posted by: on {{ i.date }} </p>
+              <br>
+              <hr>
+              <br>
+              <div class="container h-full" style="display: inherit;">
+              <p style="font-size: 15px;
+              text-align: justify;
+              overflow-x: hidden;
+              overflow-y: hidden;
+              height: 100px;">{{ i.blog }}</p>
+              </div>
+            </div>
+            <div class="container w-full" style="text-align: center;">
+                <form class="mx-auto mt-2" method="GET" action="loadArticles" >
+                    <input type="text" value="{{ i.id }}" name="id" style="color: red; visibility: hidden;">
+                    <input type="submit" style="color: #1b3ba3;" value="(read)" >
+                </form>
+            </div>
+          </div>
+          {% endfor %}
+          </div>
+          </div>
+          </div>
+          </div>
+    <!-- <div class="flex" style="background-color: #FFF5C2;">
         <div class="w-1/5 h-screen shadow-lg p-4 justify-center" style="background-color: #3081D0;" style="text-align: center;">
                 <div class="box-border h-16 w-16 mt-4 rounded-full  mx-auto" style="text-align: center; background-color: #F4F27E;">
                     {% load static %}
@@ -69,7 +124,7 @@
               </div>
               
         </div>
-    </div>
+    </div> -->
  {% endblock content %}   
 </body>
 </html>

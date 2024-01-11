@@ -6,7 +6,7 @@ urlpatterns=[
     path('validate',views.validate,name='validate'),
     path('register',views.register,name='register'),
     path('step1',views.step1,name='step1'),
-    path('step2',views.step2,name='step2'),
+    path('step2',views.success,name='step2'),
     path('otplogin',views.login_otp,name='login_otp'),
     path('afterLogin',views.login,name='login')
 ]

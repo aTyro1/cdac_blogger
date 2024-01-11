@@ -4,50 +4,52 @@
 <!doctype html>
 
 <html>
+    {% block content %}
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <link rel="stylesheet" href="{% static 'blogs/style.css' %}" >
 </head>
-{% block content %}
-<body>
-    
+
+<body style="background-color: #e9e9d8;">
+    <div class="container mx-auto" style="background-color: #f3f3db;" id="body">
     <div class="container mx-auto p-3" style=" background-color: #1b3ba3;">
         <img src="{% static 'blogs/cdac-logo.png' %}" class="h-4 w-4" style="height: 4rem; display: inline;" alt="My image">
         <p class="mx-auto" style="display: inline; text-align: center; font-size: 24px;color: gold;">Blogs</p>
       </div>
     <div class="h-screen flex items-center justify-center" style="margin-top: 7rem;">
         <div class="grid grid-cols-1">
-       <p  style="display: inline; font-size: 48px; color: gold;">Login</p>
+       
         
-        <form action="validate" method="POST" style="padding: 1rem;
+        <form action="validate" method="POST" style="padding: 5rem;
         font-size: 18px;
-        box-shadow: 8px 8px gold; background-color: #1b3ba3; color: gold;"> {% csrf_token %}
-           
+        box-shadow: 8px 8px #1b3ba3; background-color: #e9e9d8; color: #1b3ba3; border-radius: 22px;"> {% csrf_token %}
+           <p  style="display: inline; font-size: 48px; color: #1b3ba3;">Login</p>
             <br>
             <hr>
             <br>
             <div class="flex gap-2">
                 <label class="w-1/3" for="name">writer's name: </label>
-                <input type="text" class="w-2/3" id="name" style="border: 2px solid #6DB9EF; margin-left: 10px; padding: 2px; box-shadow: 1px 1px #105f97; color: #1b3ba3;" name="writer_name">
+                <input type="text" class="w-2/3" id="name" style="background-color: #6DB9EF; border: 2px solid #6DB9EF; margin-left: 10px; padding: 4px; box-shadow: 1px 1px #105f97; color: #1b3ba3;border-radius: 5px;" name="writer_name">
             </div>
             <div class="flex gap-2 mt-4">
                 <label class="w-1/3" for="name">password: </label>
-                <input type="password" class="w-2/3" id="password" style="border: 2px solid #6DB9EF; margin-left: 42px; padding: 2px; box-shadow: 1px 1px #105f97; color: #1b3ba3;" name="writer_pass">
+                <input type="password" class="w-2/3" id="password" style="background-color: #6DB9EF; border: 2px solid #6DB9EF; margin-left: 42px; padding: 4px; box-shadow: 5px 5px #918e08; color: #1b3ba3;border-radius: 5px;" name="writer_pass">
             </div>
             <div class="grid grid-cols-3 p-4 gap-2">
                 <div style="display: inline;">
-                    <input type="submit" value="login" class="rounded shadow-lg p-2 mt-4" style="background-color: #6DB9EF; color: blue; box-shadow: 2px 2px blue;">
+                    <input type="submit" value="login" class="rounded shadow-lg p-2 mt-4" style="background-color: #F4F27E; color: rgb(12, 12, 2); box-shadow: 5px 5px #918e08;">
         </form>
                     </div>
                     <div style="display: inline;">
                         <form method="post" action="register" style="display: inline;
                         margin-left: 20px;">{% csrf_token %}
-                        <input type="submit" value="register" class="rounded shadow-lg p-2 mt-4" style="background-color: #F4F27E; color: rgb(12, 12, 2); box-shadow: 2px 2px #918e08;">
+                        <input type="submit" value="register" class="rounded shadow-lg p-2 mt-4" style="background-color: #F4F27E; color: rgb(12, 12, 2); box-shadow: 5px 5px #918e08;">
                         </div>
                     </form>
                         
                         </div>  
+        </div>
 </body>
 {% endblock content %} 
 </html>

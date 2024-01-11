@@ -9,28 +9,77 @@
 
 </head>
 {% block content %}
-<body>
-    <div class="flex" style="background-color: #FFF5C2;">
-        <div class="w-1/5 h-screen shadow-lg p-4 justify-center" style="background-color: #3081D0;" style="text-align: center;">
-                <div class="box-border h-16 w-16 mt-4 rounded-full  mx-auto" style="text-align: center; background-color: #F4F27E;">
-                    
-                    <h1 style="font-size: 40px;">{{ writer_name_fl }}</h1>
+<body onload="()=>{console.log('yeah')}">
+    <div class="container mx-auto" id="body">
+        <div class="container mx-auto p-3" style=" background-color: #1b3ba3; box-shadow: 3px 5px grey;">
+            <img src="{% static 'blogs/cdac-logo.png' %}" class="h-4 w-4" style="height: 4rem; display: inline;" alt="My image">
+            <form method="GET" action="submissions" class="mx-auto" style="display: inline; text-align: center;">
+                <input type="submit" value="Feeds" class="mx-auto" style="font-size: 22px; color: #F4F27E; text-align: center;">
+                <input type="submit" value="Submissions" class="ml-2" style="font-size: 12px; color: #f8f7ba;">
+            </form>
+            <form style="text-align: right; font-size: 16px; color: #f8f7ba;" method="get" action="/account">
+            <nav>
+                <input type="submit" value="Account" style="display:inline;margin-left: 8px; font-size: 12px;">
+                <p style="display:inline;margin-left: 8px; color: gold; font-size: 26px; box-shadow: 2px 2px #f8f7ba;">{{ writer_name }}</p>
+            </nav>
+          </form>
+          </div>
+          <div class="flex" style="margin-top: 15px;">
+            <div class="container w-1/5 h-screen p-4" style="background-color: #F4F27E; box-shadow: 1px 0px grey;">
+                <p style="text-align: center; color: #1b3ba3;font-size: 22px;">TOPICS</p>
+                <div class="container mt-2" style="text-align: center;">
+                    <ul>
+                        <li>
+                            <button style="font-size: 14px; color: #2d479b;">
+                                Topic Name *
+                            </button>
+                        </li>
+                    </ul>
                 </div>
-                <div class="container p-2 mt-8">
-                    <p style="color: #F4F27E; text-align: center;" >Top Writers</p>
-                    <div class="container mt-2">
-                        <button class="w-full shadow-lg rounded" style="background-color: #f8f7ba; color:#3081D0;">{{ writer_name }}</button>
-                    </div>
-                </div>
-            
-        </div>
-        <div class="w-4/5 h-full" style="background-color: #FFF5C2;">
-            <div class="container p-2 fixed" style="text-align: center; background-color: #6DB9EF;">
-                <form method="GET" action="submissions">
-                    <input type="submit" value="Feeds" style="font-size: 22px; color: #F4F27E;">
-                    <input type="submit" value="Submissions" class="ml-2" style="font-size: 12px; color: #f8f7ba;">
-                </form>
+            </div>
+          <div class="container w-4/5 h-screen" style="display: inherit;">
+            <div class="container p-4" style="overflow-y:auto;overflow-x: hidden;">
+                {% for i in blogs %}
+          <div class="container p-2 shadow-lg rounded">
+            <div class="box-content h-64 w-32 p-2 border-4" style="border-color: #1b3ba3; background-color: white;">
+              <p style="font-size: 18px;">{{ i.title }}</p>
+              <br>
+              <p style="font-size: 12px;">posted by: on {{ i.date }} </p>
+              <br>
+              <hr>
+              <br>
+              <div class="container h-full" style="display: inherit;">
+              <p style="font-size: 15px;
+              text-align: justify;
+              overflow-x: hidden;
+              overflow-y: hidden;
+              height: 100px;">{{ i.blog }}</p>
               </div>
+            </div>
+            <div class="container w-full" style="text-align: center;">
+                <form class="mx-auto mt-2" method="GET" action="loadArticles" >
+                    <input type="text" value="{{ i.id }}" name="id" style="color: red; visibility: hidden;">
+                    <input type="submit" style="color: #1b3ba3;" value="(read)" >
+                </form>
+            </div>
+          </div>
+          {% endfor %}
+          </div>
+          </div>
+          </div>
+          </div>
+    <!-- <div class="container mx-auto" style="background-color: #1b3ba3;">
+    <img src="{% static 'blogs/cdac-logo.png' %}" class="h-4 w-4" style="height: 4rem; display: inline;" alt="My image">
+        <div class="p-4 fixed container" style=" background-color: #1b3ba3;display: inline;text-align: center;">        
+        <p class="mx-auto" style="display: inline; text-align: center; font-size: 24px;color: gold;">Blogs</p>
+            <form method="GET" action="submissions" class="mx-auto" style="display: inline; text-align: center;">
+                <input type="submit" value="Feeds" class="mx-auto" style="font-size: 22px; color: #F4F27E; text-align: center;">
+                <input type="submit" value="Submissions" class="ml-2" style="font-size: 12px; color: #f8f7ba;">
+            </form>
+          </div> -->
+          
+        <!-- <div class="w-full h-full" style="background-color: #FFF5C2;">
+            
               <div class="container h-4 p-4 mt-8">
                 {% for i in blogs %}
                 <div class="box-border h-64 w-full mt-8 shadow-lg rounded-lg relative" style="background-color: #F4F27E;">
@@ -60,8 +109,8 @@
                
               </div>
               
-        </div>
-    </div>
+        </div> -->
+    <!-- </div> -->
  {% endblock content %}   
 </body>
 </html>

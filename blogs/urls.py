@@ -8,6 +8,8 @@ urlpatterns=[
     path('submissions',views.submissions,name='submissions'),
     path('new',views.new,name='submissions'),
     path('submit_article',views.submit_article,name='submit_article'),
-    path('home',views.home,name='feeds')
+    path('home',views.home,name='feeds'),
+    path('account',views.account,name='account'),
+    path('logout',views.default,name='logout')
    
 ]

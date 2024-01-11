@@ -9,62 +9,67 @@
 
 </head>
 {% block content %}
+<script src="{% static 'js/register.js' %}"></script>
 <body onload="()=>{console.log('yeah')}">
     <div class="container mx-auto" id="body">
         <div class="container mx-auto p-3" style=" background-color: #1b3ba3; box-shadow: 3px 5px grey;">
             <img src="{% static 'blogs/cdac-logo.png' %}" class="h-4 w-4" style="height: 4rem; display: inline;" alt="My image">
             <form method="GET" action="submissions" class="mx-auto" style="display: inline; text-align: center;">
-                <input type="submit" value="Feeds" class="mx-auto" style="font-size: 22px; color: #F4F27E; text-align: center;">
-                <input type="submit" value="Submissions" class="ml-2" style="font-size: 12px; color: #f8f7ba;">
+                <input type="submit" value="Feeds" name="type" class="mx-auto" style="font-size: 12px; color: #f8f7ba; text-align: center;">
+                <input type="submit" value="Submissions" name="type" class="ml-2" style="font-size: 12px; color: #F4F27E;;">
+                <input type="submit" value="Account" class="ml-2" style="color: #F4F27E; font-size: 22px;">
             </form>
-            <form style="text-align: right; font-size: 16px; color: #f8f7ba;">
+            <form style="text-align: right; font-size: 16px; color: #f8f7ba;" method="get" action="/account">
             <nav>
-                <p style="display:inline;margin-left: 8px;">Account</p>
-                <p style="display:inline;margin-left: 8px;">Writers</p>
-                <p style="display:inline;margin-left: 8px;">Admin</p>
+                <p style="display:inline;margin-left: 8px; color: gold; font-size: 26px; box-shadow: 2px 2px #f8f7ba;">{{ writer }}</p>
             </nav>
           </form>
           </div>
           <div class="flex" style="margin-top: 15px;">
-            <div class="container w-1/5 h-screen p-4" style="background-color: #F4F27E; box-shadow: 1px 0px grey;">
-                <p style="text-align: center; color: #1b3ba3;font-size: 22px;">TOPICS</p>
-                <div class="container mt-2" style="text-align: center;">
-                    <ul>
-                        <li>
-                            <button style="font-size: 14px; color: #2d479b;">
-                                Topic Name *
-                            </button>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-          <div class="container w-4/5 h-screen" style="display: inherit;">
+          <div class="container w-5/5 h-screen" style="display: inherit;">
             <div class="container p-4" style="overflow-y:auto;overflow-x: hidden;">
-                {% for i in blogs %}
-          <div class="container p-2 shadow-lg rounded">
-            <div class="box-content h-64 w-32 p-2 border-4" style="border-color: #1b3ba3; background-color: white;">
-              <p style="font-size: 18px;">{{ i.title }}</p>
-              <br>
-              <p style="font-size: 12px;">posted by: on {{ i.date }} </p>
-              <br>
-              <hr>
-              <br>
-              <div class="container h-full" style="display: inherit;">
-              <p style="font-size: 15px;
-              text-align: justify;
-              overflow-x: hidden;
-              overflow-y: hidden;
-              height: 100px;">{{ i.blog }}</p>
-              </div>
-            </div>
-            <div class="container w-full" style="text-align: center;">
-                <form class="mx-auto mt-2" method="GET" action="loadArticles" >
-                    <input type="text" value="{{ i.id }}" name="id" style="color: red; visibility: hidden;">
-                    <input type="submit" style="color: #1b3ba3;" value="(read)" >
-                </form>
-            </div>
-          </div>
-          {% endfor %}
+                <div class="container p-2 shadow-lg rounded">
+                    <div class="box-content h-full w-32 p-2 border-4" style="border-color: #1b3ba3; background-color: white;">
+                        <table class="table-fixed p-4" style="padding: 40px;">
+                            <tr class="p-4" style="pad: 4px;">
+                                <td  class="p-2 shadow-lg rounded" style="background-color: #1b3ba3;">
+                                    <p style="font-size: 18px;color: #F4F27E;">NAME | </p>
+                                </td>
+                                <td  class="p-2 shadow-lg rounded" style="background-color: white;">
+                                    <p style="font-size: 18px;color: #1b3ba3;">{{ writer }} </p>
+                                </td>
+                            </tr>
+                            <tr class="p-4" style="pad: 4px;">
+                                <td  class="p-2 shadow-lg rounded" style="background-color: #1b3ba3;">
+                                    <p style="font-size: 18px;color: #F4F27E;">EMAIL | </p>
+                                </td>
+                                <td  class="p-2 shadow-lg rounded" style="background-color: white;">
+                                    <p style="font-size: 18px;color: #1b3ba3;">{{ email }} </p>
+                                </td>
+                            </tr>
+                            <tr class="p-4" style="pad: 4px;">
+                                <td  class="p-2 shadow-lg rounded" style="background-color: #1b3ba3;">
+                                    <p style="font-size: 18px;color: #F4F27E;">WRITER ID | </p>
+                                </td>
+                                <td  class="p-2 shadow-lg rounded" style="background-color: white;">
+                                    <p style="font-size: 18px;color: #1b3ba3;">{{ writer_id }} </p>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="container mx-auto" style="margin-top: 12px; text-align: center;">
+                            <button onclick="logout()" class="p-2 shadow-lg rounded" style="background-color: #F4F27E; color: #1b3ba3; display: inline; text-align: center;">LOGOUT</button>
+                            <button onclick="changePassword()" class="p-2 shadow-lg rounded" style="background-color: #F4F27E; color: #1b3ba3; display: inline; text-align: center; margin-left: 20px;">CHANGE PASSWORD</button>
+                            <button onclick="deleteAccount()" class="p-2 shadow-lg rounded" style="background-color: #F4F27E; color: #1b3ba3; display: inline; text-align: center; margin-left: 20px;">DELETE ACCOUNT</button>
+                        </div>
+                        <br>
+                        <hr>
+                        <br>
+                        <div class="container mx-auto" id="content" style="margin-top: 12px; text-align: center;">
+                            
+                        </div>
+                    </div>
+                    
+                  </div>
           </div>
           </div>
           </div>

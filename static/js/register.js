@@ -6,9 +6,11 @@ function ValidateEmail()
     }
     else
     {
-            document.getElementById('email').value=''
-            document.getElementById('email').focus()
             alert("You have entered an invalid email address!")
+            document.getElementById('email').focus()
+            document.getElementById('email').value=''
+            
+            return (false)
     }
     return (false)
 }
@@ -33,4 +35,39 @@ function pushComment()
     query_string="new_comment="+document.getElementById('new_comment').value+"&id="+document.getElementById('blog_id').value;
      xhttp.open("GET", "/home/reload?"+query_string, true);
      xhttp.send();
+}
+function deleteAccount()
+{
+    val=`<div class="container mx-auto">
+    <form method="get" action="delete">
+        <input type="text" class="p-4 w-screen" placeholder="ENTER YOUR PASSWORD! " name="password" style="text-align: center; ">
+        <input type="submit" class="mt-2 p-2 shadow-lg rounded" style="background-color: #1b3ba3; color: #F4F27E;">
+    </form>
+</div>
+    `
+    document.getElementById('content').innerHTML=val;
+    
+}
+function changePassword()
+{
+    val=`<div class="container mx-auto">
+    <form method="POST" action="changePassword">
+        <input type="text" class="p-4 w-screen" placeholder="ENTER CURRENT PASSWORD " name="current_password" style="text-align: center; ">
+        <input type="text" class="p-4 w-screen" placeholder="ENTER NEW PASSWORD " name="new_password1" style="text-align: center; ">
+        <input type="text" class="p-4 w-screen" placeholder="RE-ENTER NEW PASSWORD " name="new_password2" style="text-align: center; ">
+        <input type="submit" class="mt-2 p-2 shadow-lg rounded" style="background-color: #1b3ba3; color: #F4F27E;">
+    </form>
+</div>`
+    document.getElementById('content').innerHTML=val;
+}
+function logout()
+{
+    val=`<div class="container mx-auto">
+    <form method="get" action="logout">
+        <input type="text" class="p-4 w-screen" placeholder="TYPE 'LOGOUT' to logout! " name="logout" style="text-align: center; ">
+        <input type="submit" class="mt-2 p-2 shadow-lg rounded" style="background-color: #1b3ba3; color: #F4F27E;">
+    </form>
+</div>
+    `
+    document.getElementById('content').innerHTML=val;
 }

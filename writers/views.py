@@ -55,7 +55,7 @@ def step1(req):
     writer_new.save()
     v=verified_writer(writer_name=writer_name,writer_id=c_writer_id)
     v.save()
-    return redirect('/writers')
+    return HttpResponse(success_page.render({}))
 
 @csrf_protect
 @csrf_exempt
@@ -77,7 +77,9 @@ def step2(req):
     else:
         return HttpResponse(pass_register.render({'message':"password didn't match. RE-ENTER"}))
     
-
+def success(request):
+    success_page=loader.get_template('registration_success.html')
+    return HttpResponse(success_page.render({}))
 # #automatic mail sender
 # smtp = smtplib.SMTP('smtp.gmail.com', 587) 
 # smtp.ehlo() 

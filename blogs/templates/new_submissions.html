@@ -10,7 +10,51 @@
 </head>
 {% block content %}
 <body>
-    <div class="flex" style="background-color: #FFF5C2;">
+    <div class="container mx-auto" id="body">
+        <div class="container mx-auto p-3" style=" background-color: #1b3ba3; box-shadow: 3px 5px grey;">
+            <img src="{% static 'blogs/cdac-logo.png' %}" class="h-4 w-4" style="height: 4rem; display: inline;" alt="My image">
+            <form method="GET" action="submissions" class="mx-auto" style="display: inline; text-align: center;">
+                <input type="submit" value="Feeds" name="type" class="mx-auto" style="font-size: 12px; color: #f8f7ba; text-align: center;">
+                <input type="submit" value="Submissions" name="type" class="ml-2" style="font-size: 22px; color: #F4F27E;;">
+            </form>
+            <form style="text-align: right; font-size: 16px; color: #f8f7ba;">
+            <nav>
+                <p style="display:inline;margin-left: 8px;">Account</p>
+                <p style="display:inline;margin-left: 8px;">Writers</p>
+                <p style="display:inline;margin-left: 8px;">Admin</p>
+            </nav>
+          </form>
+          </div>
+          <div class="container mx-auto mt-4" style="text-align: center;">
+            <form method="GET" action="submissions" style="display: inline;">
+                <input type="submit" value="Your Submissions" class="shadow-lg rounded p-2" style="border: 2px solid #3081D0; background-color: #1b3ba3;color: gold; box-shadow: 2px 2px gold;">
+            </form>
+            <form method="GET" action="new" style="display: inline; margin-left: 10px;">
+                <input type="submit" value="New Submissions" class="shadow-lg rounded p-4" style="border: 2px solid #3081D0; background-color: #1b3ba3;color: gold; box-shadow: 2px 2px gold;">
+            </form>
+        </div>
+          <div class="flex" style="margin-top: 15px;">
+          <div class="container w-5/5 h-screen" style="display: inherit;">
+            <div class="container p-4" style="overflow-y:auto;overflow-x: hidden;">
+                <div class="box-border h-64 w-full mt-8 shadow-lg rounded-lg relative" style="background-color: #1b3ba3;">
+                    <div class="mx-auto" style="text-align: center;">
+                     <p class="mx-auto" style="display: inline; font-size: 12px; color: gold; text-align: center;">new writeup!</p>
+                    </div>
+                    <form method="POST" class="p-4" action="submit_article" >{% csrf_token %}
+                        <input type="text" class="w-full h-12 rounded shadow-lg" name="title" style="box-shadow: 2px 2px gold; color: #1b3ba3; text-align: center;" required>
+                        <label for="path" style="color: gold;">Choose text file for the article</label>
+                        <input type="file" name="blog_path" id="path" required class="mt-4 h-8 p-4 " style="text-align: center; color: gold; font-size: 12px;">
+                    <div class="absolute inset-x-0 bottom-0 h-12 mx-auto" style="background-color: white; text-align: center;">
+                        <div class="mx-auto mt-2" >
+                            <input class="mx-auto shadow-lg rounded-md" style="background-color: gold; color: #1b3ba3; padding: 4px; border-color: #1b3ba3; border: 2px solid; box-shadow: 2px 2px #1b3ba3;" type="submit" value="submit" >
+                    </div>
+                </form>
+            </div>
+          </div>
+          </div>
+          </div>
+          </div>
+    <!-- <div class="flex" style="background-color: #FFF5C2;">
         <div class="w-1/5 h-screen shadow-lg p-4 justify-center" style="background-color: #3081D0;" style="text-align: center;">
                 <div class="box-border h-16 w-16 mt-4 rounded-full  mx-auto" style="text-align: center; background-color: #F4F27E;">
                     {% load static %}
@@ -59,7 +103,7 @@
               
         </div>
         <h1>{{ message }}</h1>
-    </div>
+    </div> -->
  {% endblock content %}   
 </body>
 </html>
