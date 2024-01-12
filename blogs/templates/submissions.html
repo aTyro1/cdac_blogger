@@ -17,13 +17,12 @@
                 <input type="submit" value="Feeds" name="type" class="mx-auto" style="font-size: 12px; color: #f8f7ba; text-align: center;">
                 <input type="submit" value="Submissions" name="type" class="ml-2" style="font-size: 22px; color: #F4F27E;;">
             </form>
-            <form style="text-align: right; font-size: 16px; color: #f8f7ba;">
-            <nav>
-                <p style="display:inline;margin-left: 8px;">Account</p>
-                <p style="display:inline;margin-left: 8px;">Writers</p>
-                <p style="display:inline;margin-left: 8px;">Admin</p>
-            </nav>
-          </form>
+            <form style="text-align: right; font-size: 16px; color: #f8f7ba;" method="get" action="/account">
+                <nav>
+                    <input type="submit" value="Account" style="display:inline;margin-left: 8px; font-size: 12px;">
+                    <p style="display:inline;margin-left: 8px; color: gold; font-size: 26px; box-shadow: 2px 2px #f8f7ba;">{{ writer_name }}</p>
+                </nav>
+              </form>
           </div>
           <div class="container mx-auto mt-4" style="text-align: center;">
             <form method="GET" action="submissions" style="display: inline;">
@@ -41,7 +40,7 @@
             <div class="box-content h-64 w-32 p-2 border-4" style="border-color: #1b3ba3; background-color: white;">
               <p style="font-size: 18px;">{{ i.title }}</p>
               <br>
-              <p style="font-size: 12px;">posted by: on {{ i.date }} </p>
+              <p style="font-size: 12px;">posted by: {{ writer_name }}<br> on {{ i.date }} </p>
               <br>
               <hr>
               <br>

@@ -19,6 +19,8 @@ writer_created_password=''
 @csrf_protect
 @csrf_exempt
 def login(req):
+    req.session.flush()
+    req.session['default_mode']='T'
     login_page=loader.get_template('login.html')
     return HttpResponse(login_page.render({}))
 
@@ -30,11 +32,13 @@ def validate(req):
     w=writer.objects.filter(first_name=writer_name,password=writer_password)
     print(len(w))
     if(len(w)>=1):
+        req.session['default_mode']='F'
         query_string='name='+w.values()[0]['first_name']+'&id='+w.values()[0]['writer_id']
         response=redirect('/home?'+query_string,name='aman')
         return response
     else:
-        return HttpResponse("invalid")
+        message='INVALID CREDENTIALS!'
+        return redirect("/writers/messagedLogin?message="+message)
     
 @csrf_protect
 @csrf_exempt
@@ -55,7 +59,7 @@ def step1(req):
     writer_new.save()
     v=verified_writer(writer_name=writer_name,writer_id=c_writer_id)
     v.save()
-    return HttpResponse(success_page.render({}))
+    return HttpResponse(success_page.render({'message':'Registration Success!'}))
 
 @csrf_protect
 @csrf_exempt
@@ -104,4 +108,15 @@ def login_otp(req):
     generate_otp=loader.get_template('generate_otp.html')
     return HttpResponse(generate_otp.render({}))
 
+def normal_login(req):
+    req.session.flush()
+    req.session['default_mode']='T'
+    login_page=loader.get_template('login.html')
+    print('here is default')
+    return HttpResponse(login_page.render({}))
+
+def messagedLogin(req):
+    message=req.GET.get('message')
+    loginPage=loader.get_template('messagedLogin.html')
+    return HttpResponse(loginPage.render({'message':message}))
     

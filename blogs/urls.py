@@ -10,6 +10,8 @@ urlpatterns=[
     path('submit_article',views.submit_article,name='submit_article'),
     path('home',views.home,name='feeds'),
     path('account',views.account,name='account'),
-    path('logout',views.default,name='logout')
+    path('logout',views.default,name='logout'),
+    path('changePassword',views.changePassword,name='change Password'),
+    path('delete',views.delete,name='delete account')
    
 ]

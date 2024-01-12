@@ -67,16 +67,15 @@
         <div class="container mx-auto p-3" style=" background-color: #1b3ba3; box-shadow: 3px 5px grey;">
             <img src="{% static 'blogs/cdac-logo.png' %}" class="h-4 w-4" style="height: 4rem; display: inline;" alt="My image">
             <form method="GET" action="submissions" class="mx-auto" style="display: inline; text-align: center;">
-                <input type="submit" value="Feeds" class="mx-auto" style="font-size: 22px; color: #F4F27E; text-align: center;">
-                <input type="submit" value="Submissions" class="ml-2" style="font-size: 12px; color: #f8f7ba;">
+                <input type="submit" value="Feeds" name="type" class="mx-auto" style="font-size: 16px; color: #F4F27E; text-align: center;">
+                <input type="submit" value="Submissions" name="type" class="ml-2" style="font-size: 16px; color: #F4F27E;;">
             </form>
-            <form style="text-align: right; font-size: 16px; color: #f8f7ba;">
-            <nav>
-                <p style="display:inline;margin-left: 8px;">Account</p>
-                <p style="display:inline;margin-left: 8px;">Writers</p>
-                <p style="display:inline;margin-left: 8px;">Admin</p>
-            </nav>
-          </form>
+            <form style="text-align: right; font-size: 16px; color: #f8f7ba;" method="get" action="/account">
+                <nav>
+                    <input type="submit" value="Account" style="display:inline;margin-left: 8px; font-size: 12px;">
+                    <p style="display:inline;margin-left: 8px; color: gold; font-size: 26px; box-shadow: 2px 2px #f8f7ba;">{{ writer_name }}</p>
+                </nav>
+              </form>
           </div>
           <div class="flex" style="margin-top: 15px;">
             <div class="container w-1/5 h-full p-4" style="background-color: #F4F27E; box-shadow: 1px 0px grey;">
@@ -85,8 +84,8 @@
                 <div class="container mt-2 h-screen" style="text-align: center; overflow-y: auto; overflow-x: hidden;">
                     <ul>
                         {% for i in comments %}
-                        <li>
-                            <p class="w-full h-full rounded-md p-4 mt-4" style="background-color: #1b3ba3; color:#F4F27E; box-shadow: 5px 5px #f8f7ba;">
+                        <li style="display: inherit;">
+                            <p class="w-full h-full rounded-md p-4 mt-4" style="background-color: #1b3ba3; color:#F4F27E; box-shadow: 5px 5px #f8f7ba; overflow-y: hidden; overflow-x: hid;">
                                 {{ i }}
                             </p>
                         </li>
@@ -101,7 +100,8 @@
             <div class="box-content h-screen w-32 p-2 border-4" style="border-color: #1b3ba3; background-color: white;">
               <p style="font-size: 18px;">{{ title }}</p>
               <br>
-              <p style="font-size: 12px;">posted by: on {{ date }}</p>
+              <p style="font-size: 12px;">posted by {{ writer }}</p>
+              <p style="font-size: 12px;">posted on {{ date }}</p>
               <br>
               <hr>
               <br>
@@ -110,17 +110,19 @@
               text-align: justify;">{{ blog }}</p>
               </div>
             </div>
-            <div class="container " style="margin-top: 20px;">
-                <div class="container p-2">
-                    <p style="color: #1b3ba3; text-align: center;" > Write Your Comment</p>
-                            <textarea class="mx-auto shadow-lg rounded-md" style="display: block; background-color: white; padding: 4px; border-color: #3081D0; border: 2px solid; box-shadow: 5px 5px #1b3ba3;" type="submit" cols="50" rows="10" id="new_comment"></textarea>
-                            <input type="text" style="visibility: hidden;" id="blog_id" value="{{ blog_id }}">
-                            <button class="mx-auto p-2 rounded shadow-lg" style="display: block; margin-top: 4px; text-align: center; color: #1b3ba3;background-color: #f8f7ba;border: 2px solid #1b3ba3; box-shadow: 2px 2px #1b3ba3;" onclick="pushComment()">push</button>
-
-                </div>
-              </div>
+            
           </div>
 
+          </div>
+          <div class="container " style="margin-top: 20px;">
+            <div class="container p-2">
+                <p style="color: #1b3ba3; text-align: center;" > Write Your Comment</p>
+                    <form method="post" action="/reload">{% csrf_token %}
+                        <textarea class="mx-auto shadow-lg rounded-md w-full" style="display: block; background-color: white; padding: 4px; border-color: #3081D0; border: 2px solid; box-shadow: 5px 5px #1b3ba3;" type="submit" rows="7" name="new_comment"></textarea>
+                        <input type="text" style="visibility: hidden;" name="blog_id" value="{{ blog_id }}">
+                        <input type="submit" value="push" class="mx-auto p-2 rounded shadow-lg" style="display: block; margin-top: 4px; text-align: center; color: #1b3ba3;background-color: #f8f7ba;border: 2px solid #1b3ba3; box-shadow: 2px 2px #1b3ba3;">
+                    </form>
+            </div>
           </div>
           </div>
           </div>
