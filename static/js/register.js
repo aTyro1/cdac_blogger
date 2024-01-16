@@ -40,8 +40,8 @@ function pushComment()
 function deleteAccount()
 {
     val=`<div class="container mx-auto">
-    <form method="get" action="delete">
-        <input type="text" class="p-4 w-screen" placeholder="ENTER YOUR PASSWORD! " name="password" style="text-align: center; ">
+    <form method="POST" action="delete">
+        <input type="password" class="p-4 w-screen" placeholder="ENTER YOUR PASSWORD! " name="password" style="text-align: center; ">
         <input type="submit" value='delete' class="mt-2 p-2 shadow-lg rounded" style="background-color: #1b3ba3; color: #F4F27E;">
     </form>
 </div>

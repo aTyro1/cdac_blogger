@@ -1,0 +1,16 @@
+version: "3.7"
+services:
+  web:
+    user: root
+    restart: always
+    image: atyro01/cdac:cdac_blog
+    ports: 
+      - "8000:8000"
+  
+  nginx:
+    restart: always
+    build: ./nginx/
+    ports:
+      - "80:80"
+    
+    
