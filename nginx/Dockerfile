@@ -1,9 +1,4 @@
-FROM ubuntu
+FROM nginx:1.19.0-alpine
 
-RUN apt-get -y update && apt-get -y install nginx
 
-COPY sites-enabled/ /etc/nginx/sites-enabled
-
-EXPOSE 80/tcp
-
-CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
+COPY ./default.conf /etc/nginx/conf.d/default.conf
