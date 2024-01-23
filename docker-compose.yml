@@ -3,16 +3,16 @@ version: '3.7'
 services:
   django_gunicorn:
     volumes:
-      - static:/productionfiles/
+      - static:/app/productionfiles/
     build:
       context: .
-    ports:
-      - "8000:8000"
+    expose:
+      - "8000"
     
   nginx:
     build: ./nginx
     volumes:
-      - static:/productionfiles/
+      - static:/app/productionfiles/
     ports:
       - "80:80"
     depends_on:

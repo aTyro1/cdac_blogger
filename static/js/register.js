@@ -71,3 +71,7 @@ function logout()
     `
     document.getElementById('content').innerHTML=val;
 }
+function startmic()
+{
+    alert("starting....");
+}

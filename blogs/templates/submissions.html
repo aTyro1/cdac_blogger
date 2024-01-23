@@ -4,12 +4,12 @@
 
 <html>
 <head>
+    {% block content %}
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <link href="{% static 'styles.css' %}" rel="stylesheet" />
 </head>
-{% block content %}
-<body>
+<body id="body_id">
     <div class="container mx-auto" id="body">
         <div class="container mx-auto p-3" style=" background-color: #1b3ba3; box-shadow: 3px 5px grey;">
             <img src="{% static 'blogs/cdac-logo.png' %}" class="h-4 w-4" style="height: 4rem; display: inline;" alt="My image">
@@ -36,29 +36,34 @@
           <div class="container w-5/5 h-screen" style="display: inherit;">
             <div class="container p-4" style="overflow-y:auto;overflow-x: hidden;">
                 {% for i in blogs %}
-          <div class="container p-2 shadow-lg rounded">
-            <div class="box-content h-64 w-32 p-2 border-4" style="border-color: #1b3ba3; background-color: white;">
-              <p style="font-size: 18px;">{{ i.title }}</p>
-              <br>
-              <p style="font-size: 12px;">posted by: {{ writer_name }}<br> on {{ i.date }} </p>
-              <br>
-              <hr>
-              <br>
-              <div class="container h-full" style="display: inherit;">
-              <p style="font-size: 15px;
-              text-align: justify;
-              overflow-x: hidden;
-              overflow-y: hidden;
-              height: 100px;">{{ i.blog }}</p>
-              </div>
-            </div>
-            <div class="container w-full" style="text-align: center;">
-                <form class="mx-auto mt-2" method="GET" action="loadArticles" >
-                    <input type="text" value="{{ i.id }}" name="id" style="color: red; visibility: hidden;">
-                    <input type="submit" style="color: #1b3ba3;" value="(read)" >
-                </form>
-            </div>
-          </div>
+                <div class="container p-2 shadow-lg rounded">
+                    <div class="box-content h-72 w-32 p-2 border-4" style="border-color: #1b3ba3; background-color: white;">
+                        <p style="font-size: 22px;font-weight: bold;">{{ i.title }}</p>
+                        <br>
+                        <p style="font-size: 12px; color: #1b3ba3; display: inline;">posted by:</p> <p style="font-size: 16px; color: #1b3ba3; font-weight: bold; display: inline;">{{ i.writer_name }}</p><br><p style="display: inline; font-size: 12px; color: #1b3ba3;">on </p><p style="font-size: 16px; color: #1b3ba3; font-weight: bold; display: inline;">{{ i.date }}</p>
+                        <br>
+                        <hr>
+                        <br>
+                        <div class="container h-full" style="display: inherit;">
+                          <div style="
+                          overflow-x: hidden;
+                          overflow-y: hidden;
+                          height: 450px;">
+                          {% if i.images != '' %}
+                           <img class="mx-auto shadow-md rounded h-64 w-64" style=" border: 2px solid #1b3ba3;" src="{{ i.images }}">
+                           {% endif %}
+            
+                          <p style="font-size: 14px; text-align: justify; margin-top: 8px;">{{ i.blog }}</p>
+                        </div>
+                        </div>
+                      </div>
+                    <div class="container w-full" style="text-align: center;">
+                        <form class="mx-auto mt-2" method="GET" action="loadArticles" >
+                            <input type="text" value="{{ i.id }}" name="id" style="color: red; visibility: hidden;">
+                            <input type="submit" style="color: #1b3ba3;" value="(read)" >
+                        </form>
+                    </div>
+                  </div>
           {% endfor %}
           </div>
           </div>

@@ -133,3 +133,7 @@ COMPRESS_ENABLED = True
 STATICFILES_FINDERS = ('compressor.finders.CompressorFinder','django.contrib.staticfiles.finders.FileSystemFinder')
 
 CSRF_TRUSTED_ORIGINS=['http://0.0.0.0']
+
+MEDIA_URL='/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')

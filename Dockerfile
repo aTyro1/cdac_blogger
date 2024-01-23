@@ -1,9 +1,9 @@
-FROM python:3.10.12-alpine
+FROM python:3.10.12
 
 RUN pip3 install --upgrade pip
 
-COPY ./requirement.txt .
-RUN pip3 install -r requirement.txt
+COPY ./requirements.txt .
+RUN pip3 install -r requirements.txt
 
 COPY . /app
 

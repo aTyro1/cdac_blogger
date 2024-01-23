@@ -17,5 +17,6 @@ class blogs(models.Model):
     writer_id=models.CharField(max_length=200,null=False,default='')
     writer_name=models.CharField(max_length=200,null=False,default='')
     comments=JSONField(JSONField())
+    images=models.ImageField(upload_to='users/%Y/%m/%d/')
 
 

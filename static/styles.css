@@ -1,0 +1,8 @@
+@font-face {
+    font-family: myFirstFont;
+    src: url('Ubuntu/Ubuntu-Light.ttf');
+  }
+  
+  #body_id {
+    font-family: myFirstFont;
+  }

@@ -3,13 +3,16 @@
 <!doctype html>
 
 <html>
+    
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  {% block content %}
+  <script src="{% static 'js/upload.js' %}"></script>
+  <link href="{% static 'styles.css' %}" rel="stylesheet" />
 </head>
-{% block content %}
-<body>
+
+<body id="body_id">
     <div class="container mx-auto" id="body">
         <div class="container mx-auto p-3" style=" background-color: #1b3ba3; box-shadow: 3px 5px grey;">
             <img src="{% static 'blogs/cdac-logo.png' %}" class="h-4 w-4" style="height: 4rem; display: inline;" alt="My image">
@@ -34,18 +37,28 @@
             </form>
         </div>
           <div class="flex" style="margin-top: 15px;">
-          <div class="container w-5/5 h-full" style="display: inherit;">
-            <div class="container p-4" style="overflow-y:auto;overflow-x: hidden;">
-                <div class="box-border h-full w-full mt-8 shadow-lg rounded-lg relative" style="background-color: #1b3ba3;">
+          <div class="container h-full" >
+            <div class="container p-4" >
+                <div class="container h-full w-full mt-2 shadow-lg rounded-lg relative" style="background-color: #F4F27E;">
                     <div class="mx-auto" style="text-align: center;">
-                     <p class="mx-auto" style="display: inline; font-size: 12px; color: gold; text-align: center;">new writeup!</p>
+                     <p class="mx-auto" style="display: inline; font-size: 12px; color: #1b3ba3; text-align: center;">start writing here!</p>
                     </div>
-                    <form method="POST" class="p-4" action="submit_article" >{% csrf_token %}
-                        <input type="text" placeholder="TITLE OF THE BLOG!" class="w-full h-12 rounded shadow-lg" name="title" style="box-shadow: 2px 2px gold; color: #1b3ba3; text-align: center;" required>
-                        <textarea rows="18" placeholder="WRITER YOUR BLOG HERE" class="w-full mt-4 rounded shadow-lg" name="blog" style="box-shadow: 2px 2px gold; color: #1b3ba3; text-align: justify; height: fit-content;" required></textarea>
-                    <div class="absolute inset-x-0 bottom-0 h-12 mx-auto" style="background-color: white; text-align: center;">
+                    <form method="POST" class="p-4" action="submit_article" enctype="multipart/form-data" id="uplf">{% csrf_token %}
+                        <input type="text" placeholder="TITLE OF THE BLOG!" class="w-full h-12 rounded shadow-lg" name="title" style="box-shadow: 2px 2px #1b3ba3; color: #1b3ba3; text-align: center;" required>
+                          <div class="mx-auto container mt-2 p-2"> 
+                        <button type="button" onclick="startmic()" class="rounded-full shadow-lg p-4" style="background-color: gold; color: gold;"><img src="{% static 'blogs/mic.png' %}" style="color: #F4F27E;"></button> <text style="margin-left: 4px; color: #1b3ba3;">Record Your Answer!</text>
+                        <div class="container mt-2" id="images">
+                            <button type="button" onclick="uploadimg()" class="rounded-full shadow-lg p-4 " style=" background-color: gold; color: gold;"><img src="{% static 'blogs/add_img.png' %}" style="color: #F4F27E;"></button> <text style="margin-left: 4px; color: #1b3ba3;">Add image!</text>
+                            
+
+
+                        </div>
+                        
+                    </div>
+                        <textarea rows="15" placeholder="WRITER YOUR BLOG HERE" class="w-full mt-4 rounded shadow-lg p-2" name="blog" style="box-shadow: 2px 2px #1b3ba3; color: #1b3ba3; text-align: justify; height: fit-content; resize: none;"></textarea>
+                    <div class="container" style=" text-align: center;">
                         <div class="mx-auto mt-2" >
-                            <input class="mx-auto shadow-lg rounded-md" style="background-color: gold; color: #1b3ba3; padding: 4px; border-color: #1b3ba3; border: 2px solid; box-shadow: 2px 2px #1b3ba3;" type="submit" value="submit" >
+                            <input class="mx-auto shadow-lg rounded-md" style="background-color: #1b3ba3; color: #F4F27E; padding: 4px; border-color: #F4F27E; border: 2px solid; box-shadow: 2px 2px #f8f7ba;" type="submit" value="submit" >
                     </div>
                 </form>
             </div>

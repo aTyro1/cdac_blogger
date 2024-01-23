@@ -4,13 +4,13 @@
 
 <html>
 <head>
+    {% block content %}
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <link href="{% static 'styles.css' %}" rel="stylesheet" />
 </head>
-{% block content %}
 <script src="{% static 'js/register.js' %}"></script>
-<body onload="()=>{console.log('yeah')}">
+<body onload="()=>{console.log('yeah')}" id="body_id">
     <div class="container mx-auto" id="body">
         <div class="container mx-auto p-3" style=" background-color: #1b3ba3; box-shadow: 3px 5px grey;">
             <img src="{% static 'blogs/cdac-logo.png' %}" class="h-4 w-4" style="height: 4rem; display: inline;" alt="My image">
